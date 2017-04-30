@@ -1,0 +1,31 @@
+{
+    "name": "jimenezmaximiliano/suchadummy",
+    "description": "Such a dummy cms",
+    "type": "library",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Maximiliano Jimenez",
+            "email": "jimenez@maximiliano.com.ar"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "tightenco/collect": "^5.4",
+        "symfony/finder": "^3.2",
+        "league/commonmark": "^0.17",
+        "nesbot/carbon": "~1.22",
+        "eloquent/pathogen": "^0.6.1"
+    },
+    "require-dev": {
+        "larapack/dd": "^1.1",
+        "phpunit/phpunit": "^6",
+        "mockery/mockery": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jimenezmaximiliano\\Suchadummy\\": "src/",
+            "Tests\\": "tests"
+        }
+    }
+}
