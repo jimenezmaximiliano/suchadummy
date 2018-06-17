@@ -1,8 +1,0 @@
-web:
-  image: digbang/php-dev:7.1
-  hostname: boldtravel
-  volumes:
-    - ./:/var/www/html
-    - ./docs/docker/etc/apache2/sites-enabled/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
-  ports:
-    - "80:80"
