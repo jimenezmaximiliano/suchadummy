@@ -7,6 +7,7 @@ namespace Jimenezmaximiliano\Suchadummy\Content\Category;
 use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
 use Jimenezmaximiliano\Suchadummy\Content\AbstractContentFactory;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Metadata;
+use Tightenco\Collect\Support\Collection;
 
 class CategoryFactory extends AbstractContentFactory
 {
@@ -16,6 +17,11 @@ class CategoryFactory extends AbstractContentFactory
     public function make(SuchadummyContainer $container): Category
     {
         $this->container = $container;
+        $this->rejectMissingMetadata(new Collection([
+            Metadata::ID,
+            Metadata::CONTENT_TYPE,
+            Metadata::TITLE,
+        ]));
         $title = $this->container->getMetadata()->get(Metadata::TITLE);
         $this->entity = new Category($this->getId(), $title);
         $this->setString(Metadata::EXCERPT);

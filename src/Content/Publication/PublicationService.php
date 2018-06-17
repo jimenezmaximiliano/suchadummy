@@ -6,6 +6,7 @@ namespace Jimenezmaximiliano\Suchadummy\Content\Publication;
 
 use Jimenezmaximiliano\Suchadummy\Content\Category\Category;
 use Jimenezmaximiliano\Suchadummy\Content\ContentRepository;
+use Jimenezmaximiliano\Suchadummy\Content\Exceptions\CategoryNotFound;
 use Tightenco\Collect\Support\Collection;
 
 class PublicationService
@@ -33,10 +34,16 @@ class PublicationService
 
     /**
      * @param string $categoryId
-     * @return Collection | Category[]
+     * @return Category[]|Collection
+     * @throws CategoryNotFound
      */
     public function getByCategoryId(string $categoryId): Collection
     {
-        return $this->contentRepository->getCategories()->get($categoryId)->getPublications();
+        $categories = $this->contentRepository->getCategories();
+        if (!$categories->has($categoryId)) {
+            throw new CategoryNotFound($categoryId);
+        }
+
+        return $categories->get($categoryId)->getPublications();
     }
 }

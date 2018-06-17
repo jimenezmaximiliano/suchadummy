@@ -6,7 +6,9 @@ namespace Jimenezmaximiliano\Suchadummy\Content;
 
 use Carbon\Carbon;
 use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
+use Jimenezmaximiliano\Suchadummy\Content\Exceptions\MetadataNotFound;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Metadata;
+use Tightenco\Collect\Support\Collection;
 
 abstract class AbstractContentFactory
 {
@@ -67,5 +69,16 @@ abstract class AbstractContentFactory
         foreach ($customFields as $customFieldKey => $customFieldValue) {
             $entity->setCustomField($customFieldKey, $customFieldValue);
         }
+    }
+
+    protected function rejectMissingMetadata(Collection $requiredMetadata): void
+    {
+        $requiredMetadata->each(function (string $metadataKey) {
+            if ($this->container->getMetadata()->has($metadataKey)) {
+                return;
+            }
+
+            throw new MetadataNotFound($metadataKey);
+        });
     }
 }

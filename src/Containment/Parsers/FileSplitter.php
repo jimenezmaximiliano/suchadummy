@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Jimenezmaximiliano\Suchadummy\Containment\Parsers;
 
+use Jimenezmaximiliano\Suchadummy\Containment\Exceptions\FenceNotFoundException;
+use Jimenezmaximiliano\Suchadummy\Containment\Exceptions\MetadataBlockNotFound;
 use Jimenezmaximiliano\Suchadummy\Containment\SplitFile;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -22,11 +24,23 @@ class FileSplitter
     public function split(SplFileInfo $file): SplitFile
     {
         $this->rawFileContent = $file->getContents();
+        $this->rejectInvalidContent();
 
         return new SplitFile(
             $this->getContent(),
             $this->getMetadata()
         );
+    }
+
+    private function rejectInvalidContent(): void
+    {
+        if (false === strpos($this->rawFileContent, $this->metadataFence)) {
+            throw new FenceNotFoundException($this->metadataFence);
+        }
+
+        if (empty(trim($this->getMetadata()))) {
+            throw new MetadataBlockNotFound;
+        }
     }
 
     private function getContent(): ?string

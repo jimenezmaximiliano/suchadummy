@@ -32,7 +32,7 @@ abstract class AbstractContent
     public function __construct(string $id)
     {
         $this->id = $id;
-        $this->customFields = new Collection();
+        $this->customFields = new Collection;
     }
 
     public function getId(): string

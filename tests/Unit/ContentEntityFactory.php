@@ -6,6 +6,7 @@ namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
+use Jimenezmaximiliano\Suchadummy\Content\AbstractContent;
 use Jimenezmaximiliano\Suchadummy\Content\IdFactory;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Metadata;
 use Mockery;
@@ -39,22 +40,38 @@ abstract class ContentEntityFactory extends TestCase
             ->andReturn(self::METADATA_ID)
             ->getMock();
 
+        $this->setSadContainer($this->getCompleteMetadata());
+    }
+
+    protected function setMetadata(Collection $metadata): void
+    {
+        $this->setSadContainer($metadata);
+    }
+
+    private function setSadContainer(Collection $metadata): void
+    {
         $this->sadContainer = Mockery::mock(SuchadummyContainer::class)
             ->shouldReceive([
-                'getMetadata' => new Collection([
-                    Metadata::ID => self::METADATA_ID,
-                    Metadata::TITLE => self::METADATA_TITLE,
-                    Metadata::SLUG => self::METADATA_SLUG,
-                    Metadata::EXCERPT => self::EXCERPT,
-                    Metadata::AUTHOR => self::AUTHOR,
-                    Metadata::DATE => self::DATE,
-                    Metadata::CUSTOM_FIELDS => [
-                        self::CUSTOM_FIELD_KEY => self::CUSTOM_FIELD_VALUE,
-                    ],
-                ]),
+                'getMetadata' => $metadata,
                 'getContent' => self::CONTENT,
             ])
             ->getMock();
+    }
+
+    private function getCompleteMetadata(): Collection
+    {
+        return new Collection([
+            Metadata::CONTENT_TYPE => AbstractContent::TYPE_CATEGORY,
+            Metadata::ID => self::METADATA_ID,
+            Metadata::TITLE => self::METADATA_TITLE,
+            Metadata::SLUG => self::METADATA_SLUG,
+            Metadata::EXCERPT => self::EXCERPT,
+            Metadata::AUTHOR => self::AUTHOR,
+            Metadata::DATE => self::DATE,
+            Metadata::CUSTOM_FIELDS => [
+                self::CUSTOM_FIELD_KEY => self::CUSTOM_FIELD_VALUE,
+            ],
+        ]);
     }
 
     public function tearDown(): void

@@ -8,6 +8,7 @@ use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
 use Jimenezmaximiliano\Suchadummy\Content\AbstractContentFactory;
 use Jimenezmaximiliano\Suchadummy\Content\IdFactory;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Metadata;
+use Tightenco\Collect\Support\Collection;
 
 class PublicationFactory extends AbstractContentFactory
 {
@@ -23,6 +24,10 @@ class PublicationFactory extends AbstractContentFactory
     public function make(SuchadummyContainer $container): Publication
     {
         $this->container = $container;
+        $this->rejectMissingMetadata(new Collection([
+            Metadata::ID,
+            Metadata::CONTENT_TYPE,
+        ]));
         $this->entity = new Publication($this->getId(), $container->getContent());
         $this->setString(Metadata::TITLE);
         $this->setString(Metadata::AUTHOR);

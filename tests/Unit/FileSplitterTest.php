@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
+use Jimenezmaximiliano\Suchadummy\Containment\Exceptions\FenceNotFoundException;
+use Jimenezmaximiliano\Suchadummy\Containment\Exceptions\MetadataBlockNotFound;
 use Jimenezmaximiliano\Suchadummy\Containment\Parsers\FileSplitter;
 use Jimenezmaximiliano\Suchadummy\Containment\SplitFile;
 use Mockery;
@@ -30,7 +32,7 @@ final class FileSplitterTest extends TestCase
         Mockery::close();
     }
 
-    public function testReturnsASplitedFile(): void
+    public function testReturnsASplitFile(): void
     {
         $completeFile = $this->getFileMock(self::RAW_METADATA . self::FENCE . self::RAW_CONTENT);
         $splitFile = $this->fileSplitter->split($completeFile);
@@ -60,6 +62,22 @@ final class FileSplitterTest extends TestCase
         $splitFile = $this->fileSplitter->split($fileWithoutContent);
 
         $this->assertEquals(self::RAW_METADATA, $splitFile->getRawMetadata());
+    }
+
+    public function testSplittingAFileWithoutMetadata(): void
+    {
+        $this->expectException(MetadataBlockNotFound::class);
+
+        $fileWithoutMetadata = $this->getFileMock(self::FENCE . self::RAW_CONTENT);
+        $this->fileSplitter->split($fileWithoutMetadata);
+    }
+
+    public function testSplittingAFileWithoutAFence(): void
+    {
+        $this->expectException(FenceNotFoundException::class);
+
+        $fileWithoutFence = $this->getFileMock(self::RAW_METADATA);
+        $this->fileSplitter->split($fileWithoutFence);
     }
 
     private function getFileMock($content)
