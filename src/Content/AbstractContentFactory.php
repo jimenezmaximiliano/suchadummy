@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jimenezmaximiliano\Suchadummy\Content;
 
-use Carbon\Carbon;
+use Cake\Chronos\Chronos;
 use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
 use Jimenezmaximiliano\Suchadummy\Content\Exceptions\MetadataNotFound;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Metadata;
@@ -48,7 +48,7 @@ abstract class AbstractContentFactory
             return;
         }
 
-        $date = Carbon::createFromFormat(
+        $date = Chronos::createFromFormat(
             $this->dateFormat,
             $this->container->getMetadata()->get('date')
         );

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use Carbon\Carbon;
+use Cake\Chronos\Chronos;
 use Jimenezmaximiliano\Suchadummy\Containment\SuchadummyContainer;
 use Jimenezmaximiliano\Suchadummy\Content\AbstractContent;
 use Jimenezmaximiliano\Suchadummy\Content\IdFactory;
@@ -113,7 +113,7 @@ abstract class ContentEntityFactory extends TestCase
 
     public function testGettingContentEntityDate(): void
     {
-        $expectedDate = Carbon::parse(self::DATE)->format(self::DATE_FORMAT);
+        $expectedDate = Chronos::parse(self::DATE)->format(self::DATE_FORMAT);
 
         $this->assertEquals(
             $this->entity->getDate()->format(self::DATE_FORMAT),

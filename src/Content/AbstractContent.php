@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Jimenezmaximiliano\Suchadummy\Content;
 
-use Carbon\Carbon;
+use Cake\Chronos\Chronos;
 use Tightenco\Collect\Support\Collection;
 
 abstract class AbstractContent
@@ -22,7 +22,7 @@ abstract class AbstractContent
     protected $excerpt;
     /** @var string */
     protected $slug;
-    /** @var Carbon */
+    /** @var Chronos */
     protected $date;
     /** @var Collection */
     protected $customFields;
@@ -45,7 +45,7 @@ abstract class AbstractContent
         return $this->excerpt;
     }
 
-    public function getDate(): ?Carbon
+    public function getDate(): ?Chronos
     {
         return $this->date;
     }
@@ -85,7 +85,7 @@ abstract class AbstractContent
         $this->slug = $slug;
     }
 
-    public function setDate(Carbon $date): void
+    public function setDate(Chronos $date): void
     {
         $this->date = $date;
     }
