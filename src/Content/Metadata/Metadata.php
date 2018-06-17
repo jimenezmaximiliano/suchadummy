@@ -12,7 +12,7 @@ interface Metadata
     public const EXCERPT = 'excerpt';
     public const SLUG = 'slug';
     public const DATE = 'date';
-    public const CONTENT_TYPE= 'contentType';
+    public const CONTENT_TYPE = 'contentType';
     public const CUSTOM_FIELDS = 'customFields';
     public const CATEGORIES = 'categories';
 }

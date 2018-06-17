@@ -41,15 +41,13 @@ class SuchadummyContainer
 
     public function isPublication(): bool
     {
-        return $this->metadata->has(Metadata::CONTENT_TYPE)
-            && $this->metadata->get(Metadata::CONTENT_TYPE)
+        return $this->metadata->get(Metadata::CONTENT_TYPE)
                     === AbstractContent::TYPE_PUBLICATION;
     }
 
     public function isCategory(): bool
     {
-        return $this->metadata->has(Metadata::CONTENT_TYPE)
-            && $this->metadata->get(Metadata::CONTENT_TYPE)
+        return $this->metadata->get(Metadata::CONTENT_TYPE)
             === AbstractContent::TYPE_CATEGORY;
     }
 }
