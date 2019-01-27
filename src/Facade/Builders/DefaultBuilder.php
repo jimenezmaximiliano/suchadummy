@@ -25,7 +25,7 @@ class DefaultBuilder extends AbstractCmsBuilder
         $this->variableParser = new CurlyVariableParser;
     }
 
-    function setMetadataParser(): void
+    public function setMetadataParser(): void
     {
         $this->metadataParser = new JsonMetadataParser;
     }
