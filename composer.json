@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 | 8.0.*",
         "ext-mbstring": "*",
         "tightenco/collect": "^8.19",
         "symfony/finder": "^5.2.1",
