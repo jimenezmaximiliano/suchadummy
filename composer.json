@@ -2,7 +2,7 @@
     "name": "jimenezmaximiliano/suchadummy",
     "description": "Such a dummy cms",
     "type": "library",
-    "license": "BSD",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Maximiliano Jimenez",
