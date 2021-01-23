@@ -92,11 +92,11 @@ class FileParsingTest extends TestCase
 
     public function testHTMLConversion(): void
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<h1>Hello world!</h1>',
             $this->container->getContent()
         );
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<p>A paragraph</p>',
             $this->container->getContent()
         );
@@ -104,7 +104,7 @@ class FileParsingTest extends TestCase
 
     public function testVariableReplacement(): void
     {
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<p>basePath is http://localhost</p>',
             $this->container->getContent()
         );

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Jimenezmaximiliano\Suchadummy\Content\Category;
 
-use Cake\Chronos\Chronos;
 use Tightenco\Collect\Support\Collection;
 use Jimenezmaximiliano\Suchadummy\Content\AbstractContent;
 use Jimenezmaximiliano\Suchadummy\Content\Publication\Publication;

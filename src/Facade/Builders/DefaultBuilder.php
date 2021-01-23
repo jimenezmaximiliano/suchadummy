@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Jimenezmaximiliano\Suchadummy\Facade\Builders;
 
 use Tightenco\Collect\Support\Collection;
-use Jimenezmaximiliano\Suchadummy\Content\Metadata\MetadataIdFactory;
 use Jimenezmaximiliano\Suchadummy\Content\Metadata\Parsers\JsonMetadataParser;
 use Jimenezmaximiliano\Suchadummy\Content\Parsers\CommonMarkAdapter;
 use Jimenezmaximiliano\Suchadummy\Content\Variables\CurlyVariableParser;
