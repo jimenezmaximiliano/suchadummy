@@ -14,7 +14,7 @@
         "ext-mbstring": "*",
         "tightenco/collect": "^8.19",
         "symfony/finder": "^5.2.1",
-        "league/commonmark": "^1.5.7",
+        "league/commonmark": "^1.5.7 || ^2.0.0",
         "cakephp/chronos": "^2.1"
     },
     "require-dev": {
